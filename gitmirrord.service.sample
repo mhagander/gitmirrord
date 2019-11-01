@@ -1,0 +1,14 @@
+[Unit]
+Description=git mirror daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/gitmirrord/gitmirrord.py
+WorkingDirectory=/usr/local/gitmirrord
+Restart=always
+RestartSec=30
+User=topsecret
+Group=topsecret
+
+[Install]
+WantedBy=multi-user.target
