@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3 -u
 #
 # gitmirrord.py - simple script to trigger git push to mirrors upon being
 #                 pinged.
