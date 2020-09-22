@@ -24,6 +24,11 @@ repository gets an entry of the form:
 [repositoryname]
 path=/some/where/to/therepo.git
 remote=mirror
+
+[bigrepository}
+path=/some/where/to/bigrepo.git
+remote=mirror
+timeout=120
 ```
 
 In this case, when a ping is received on `/mirror/repositoryname`

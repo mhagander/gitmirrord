@@ -50,7 +50,12 @@ def mirror(repository):
     if not cfg.has_option(repository, 'path') or not cfg.has_option(repository, 'remote'):
         return "Repo misconfigured", 500
 
-    queue.put((cfg.get(repository, 'path'), cfg.get(repository, 'remote')))
+    if cfg.has_option(repository, 'timeout'):
+        timeout = int(cfg.get(repository, 'timeout'))
+    else:
+        timeout = 60
+
+    queue.put((cfg.get(repository, 'path'), cfg.get(repository, 'remote'), timeout))
 
     r = make_response("Mirror request queued.")
     r.mimetype = 'text/plain'
@@ -65,10 +70,10 @@ def limit_remote_addr():
 
 def mirror_worker():
     while True:
-        (path, remote) = queue.get()
+        (path, remote, timeout) = queue.get()
         print("Running push from {} to {}".format(path, remote))
         try:
-            subprocess.run(['git', 'push', remote, '--all'], cwd=path, timeout=60, check=True)
+            subprocess.run(['git', 'push', remote, '--all'], cwd=path, timeout=timeout, check=True)
             subprocess.run(['git', 'push', remote, '--tags'], cwd=path, timeout=30, check=True)
         except Exception as e:
             print("Failed in git push command: {}".format(e), file=sys.stderr)
