@@ -9,7 +9,6 @@ import configparser
 import os
 import subprocess
 import sys
-import re
 import threading
 from queue import Queue
 
