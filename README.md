@@ -29,9 +29,13 @@ remote=mirror
 path=/some/where/to/bigrepo.git
 remote=mirror
 timeout=120
+prune=1
 ```
 
 In this case, when a ping is received on `/mirror/repositoryname`
 (either with GET or POST), the repository in
 `/some/where/to/therepo.git` will be pushed to the remote named
 `mirror`.
+
+If `prune` is set to `1`, remote branches that have been removed
+locally will be pruned.
