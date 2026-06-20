@@ -2,3 +2,4 @@
 path=/home/mha/django/pgconfeu
 remote=kalle
 prune=1
+force=0

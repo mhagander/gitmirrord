@@ -30,6 +30,7 @@ path=/some/where/to/bigrepo.git
 remote=mirror
 timeout=120
 prune=1
+force=1
 ```
 
 In this case, when a ping is received on `/mirror/repositoryname`
@@ -39,3 +40,5 @@ In this case, when a ping is received on `/mirror/repositoryname`
 
 If `prune` is set to `1`, remote branches that have been removed
 locally will be pruned.
+
+If `force` is set to `1`, the push is done with `--force`.
